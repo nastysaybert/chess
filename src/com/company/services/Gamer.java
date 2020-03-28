@@ -40,13 +40,13 @@ public class Gamer {
     }
 
     public void doMove(Move move){
-        Mover mover = new Mover();
+        Mover mover = new Mover();//TODO: опять новый Mover, Mover - подразумевает сервис, каждый раз инициализировать сервис плохо
         this.increaseMoveCount();
 
 
         System.out.print("Ход " + this.getMoveCount() + ": ");
         move.print();
-        mover.moveFigureByWay(this.getBoard(), move);
+        mover.moveFigureByWay(this.getBoard(), move);//TODO: опять же транзитом идет доска, что плохо
         this.changePlayer();
     }
 }

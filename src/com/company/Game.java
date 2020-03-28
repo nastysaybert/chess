@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Game {
     Gamer gamer = new Gamer();
-    Checker checker = new Checker();
+    Checker checker = new Checker();//TODO:Сюда ты можешь передать доску И сделать класс синглтоном
     Mover mover = new Mover();
 
     public void startGame() {
@@ -22,13 +22,13 @@ public class Game {
                     for (int col = 0; col < 8; col++) {
                         position = new Position(row, col);
                         //смотрим на клетку
-                        Figure f = gamer.getBoard().getFigureByPosition(position);
+                        Figure f = gamer.getBoard().getFigureByPosition(position);//TODO:название f для переменной ниочем не говорит, лучше использовать полное либо такое имя из которого будет понятно что в ней, мне кажется тут подойдет просто figure
                         //если на клетке есть фигура и она принадлежт текущему игроку
-                        if ((f != null) && (f.getFigureColor() == gamer.getPlayer())) {
+                        if ((f != null) && (f.getFigureColor() == gamer.getPlayer())) {//TODO: второе условие достаточно сложно, можно добавить метод в фигуры, где будет проверятся цвет, тогда условие будет f.isColor(gamer.getPlayer())
                             //находим все допустимые ходы данной фигуры
-                            ArrayList<Move> am = checker.allowedMoves(f, gamer.getBoard(), row, col, (ArrayList<Move>) allowedMovesList.clone());
-                            allowedMovesList = (ArrayList<Move>) am.clone();
-
+                            ArrayList<Move> am = checker.allowedMoves(f, gamer.getBoard(), row, col, (ArrayList<Move>) allowedMovesList.clone());//TODO: тут ты видимо получается доступные ходы, тогда метод должен быть getAllowedMoves& не надо передавать доску, она должна быть при инициалиизации
+                            allowedMovesList = (ArrayList<Move>) am.clone();//TODO: выполни клонирование внутри метода
+                            //TODO: ты проходишь все фигуры собираешь все ходы а потом используешь только один ход?
 
                         }
                     }
@@ -38,7 +38,7 @@ public class Game {
                     Move m = checker.randomMove(allowedMovesList);
                     if ((m.getFigureInRisk() instanceof King) || (gamer.getMoveCount() == 1000)) {
                         gamer.doMove(m);
-                        gamer.getBoard().print();
+                        gamer.getBoard().print();//TODO:вот это почему-то не печаталось
                         System.out.print("And the Winner is... ");
                         System.out.println(gamer.getPlayer() == Color.WHITE ? "Black player!" : "White player!");
                         break game;

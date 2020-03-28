@@ -2,7 +2,7 @@ package com.company.model;
 
 import com.company.model.figures.*;
 
-public class ChessBoard {
+public class ChessBoard {//В рамках работы программы
     private Figure[][] board = new Figure[8][8];
 
     public Figure[][] getBoard() {

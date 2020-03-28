@@ -38,8 +38,8 @@ public class Checker {
 
     //допустимые ходы (реализуемые в данной расстановке на доске)
     public ArrayList<Move> allowedMoves (Figure figure, ChessBoard board, int posI, int posJ, ArrayList<Move> list){
-        ArrayList<Way> pm = figure.possibleMovesList(posI, posJ);
-        Move m;
+        ArrayList<Way> pm = figure.possibleMovesList(posI, posJ);//TODO: pm дальше в коде не очевидно
+        Move m; //TODO:ТЖС
 
         if (pm.size()>0){
             for (int count = 0; count < pm.size(); count++) {
@@ -63,7 +63,7 @@ public class Checker {
 
     public Move randomMove (ArrayList<Move> list){
         int randomNum;
-        ArrayList<Move> killingWaysList = new ArrayList<Move>();
+        ArrayList<Move> killingWaysList = new ArrayList<Move>();//TODO:нужно использовать stream и лямда функции
         //проходимся по списку допустимых ходов
         for (int i = 0; i < list.size(); i++){
             //если iтый элемент из списка - угрожающий
@@ -79,7 +79,7 @@ public class Checker {
 
         //есл список угрожающих ходов не пустой, выбираем рандомный из них
         if (killingWaysList.size() > 0){
-            randomNum = (int) (Math.random()*killingWaysList.size());
+            randomNum = (int) (Math.random()*killingWaysList.size());//TODO: выбор рандома в отдельный класс
             return killingWaysList.get(randomNum);
         } else {
             //иначе берем рандомный из списка допустимых ходов
